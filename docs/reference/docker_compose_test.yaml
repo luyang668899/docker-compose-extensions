@@ -1,0 +1,134 @@
+command: docker compose test
+short: Run tests and generate test reports
+long: |-
+    Run tests for services and generate detailed test reports.
+
+    This command supports:
+    1. Automatic test discovery and execution
+    2. Test watching: Re-run tests on code changes
+    3. Test reports: Generate reports in various formats (JUnit, JSON, HTML)
+    4. Coverage analysis: Measure test coverage
+    5. Parallel execution: Run multiple tests in parallel
+    6. Environment variables: Set custom environment variables for tests
+    7. Cleanup: Automatically clean up test resources
+usage: docker compose test [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: all
+      value_type: bool
+      default_value: "false"
+      description: Run tests for all services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: clean
+      value_type: bool
+      default_value: "true"
+      description: Clean up test resources after execution
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: coverage
+      value_type: bool
+      default_value: "false"
+      description: Generate coverage report
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: coverage-dir
+      value_type: string
+      default_value: ./coverage
+      description: Directory for coverage reports
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: env
+      value_type: stringArray
+      default_value: '[]'
+      description: 'Set environment variables (format: KEY=VALUE)'
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: format
+      value_type: string
+      default_value: junit
+      description: Test report format (junit, json, html)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: parallel
+      value_type: int
+      default_value: "1"
+      description: Number of parallel test runners
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: report
+      value_type: string
+      description: Output directory for test reports
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: timeout
+      value_type: int
+      default_value: "60"
+      description: Test timeout in seconds
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: watch
+      value_type: bool
+      default_value: "false"
+      description: Watch for changes and re-run tests
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

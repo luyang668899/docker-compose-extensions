@@ -1,0 +1,122 @@
+command: docker compose dev
+short: Development environment with hot reload and debugging
+long: |-
+    Development environment optimized for rapid development with hot reload, code sync, and debugging support.
+
+    This command supports:
+    1. Hot reload: Automatically restart services on code changes
+    2. Code sync: Real-time sync between local files and containers
+    3. Debugging: Support for setting breakpoints and debugging in containers
+    4. IDE integration: Integration with VS Code, IntelliJ, and other IDEs
+    5. Custom watch paths: Specify which paths to watch for changes
+    6. Ignore patterns: Exclude specific paths from watching
+usage: docker compose dev [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: debug
+      value_type: bool
+      default_value: "false"
+      description: Enable debugging support
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: debug-port
+      value_type: int
+      default_value: "5678"
+      description: Debugging port
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: hot-reload
+      value_type: bool
+      default_value: "true"
+      description: Enable hot reload on code changes
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: ide
+      value_type: string
+      description: IDE integration (vscode, intellij)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: ignore
+      value_type: stringArray
+      default_value: '[]'
+      description: Paths to ignore for changes
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: poll-interval
+      value_type: int
+      default_value: "2"
+      description: Polling interval for file changes (seconds)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: restart-policy
+      value_type: string
+      default_value: always
+      description: Restart policy on code changes (always, on-failure, never)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: sync
+      value_type: string
+      description: 'Sync local directory to container (format: ./local:/container)'
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: watch
+      value_type: stringArray
+      default_value: '[]'
+      description: Paths to watch for changes
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

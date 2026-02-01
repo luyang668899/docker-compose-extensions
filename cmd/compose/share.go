@@ -29,24 +29,24 @@ import (
 
 type shareOptions struct {
 	*ProjectOptions
-	method        string
-	include       []string
-	exclude       []string
-	public        bool
-	expires       string
-	access        string
-	message       string
-	quiet         bool
+	method  string
+	include []string
+	exclude []string
+	public  bool
+	expires string
+	access  string
+	message string
+	quiet   bool
 }
 
 func shareCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
 	opts := shareOptions{
 		ProjectOptions: p,
-		method:        "link",
-		public:        false,
-		expires:       "7d",
-		access:        "read",
-		quiet:         false,
+		method:         "link",
+		public:         false,
+		expires:        "7d",
+		access:         "read",
+		quiet:          false,
 	}
 
 	cmd := &cobra.Command{
@@ -136,7 +136,7 @@ func runShare(ctx context.Context, dockerCli command.Cli, backendOptions *Backen
 	if !opts.quiet {
 		fmt.Println("\nProcessing environment for sharing...")
 	}
-	
+
 	shareResult, err := shareEnvironment(ctx, dockerCli, project, opts)
 	if err != nil {
 		return err

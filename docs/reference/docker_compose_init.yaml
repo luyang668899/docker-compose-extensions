@@ -1,0 +1,77 @@
+command: docker compose init
+short: Initialize a new Compose project from template
+long: |-
+    EXPERIMENTAL - Initialize a new Compose project from template.
+
+    This command helps you quickly create a new Compose project with pre-defined templates.
+    You can list available templates or create a new project from a specific template.
+usage: docker compose init [OPTIONS]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: force
+      value_type: bool
+      default_value: "false"
+      description: Overwrite existing files
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: list
+      value_type: bool
+      default_value: "false"
+      description: List available templates
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: name
+      value_type: string
+      description: Project name
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: services
+      value_type: stringArray
+      default_value: '[]'
+      description: Services to include (comma-separated)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: template
+      value_type: string
+      description: Template name to use
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

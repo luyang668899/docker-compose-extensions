@@ -30,27 +30,27 @@ import (
 
 type syncOptions struct {
 	*ProjectOptions
-	services      []string
-	all           bool
-	direction     string
-	watch         bool
-	ignore        []string
-	timeout       int
-	conflict      string
-	preview       bool
-	dryRun        bool
+	services  []string
+	all       bool
+	direction string
+	watch     bool
+	ignore    []string
+	timeout   int
+	conflict  string
+	preview   bool
+	dryRun    bool
 }
 
 func syncCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
 	opts := syncOptions{
 		ProjectOptions: p,
-		all:           false,
-		direction:     "bidirectional",
-		watch:         false,
-		timeout:       60,
-		conflict:      "ask",
-		preview:       false,
-		dryRun:        false,
+		all:            false,
+		direction:      "bidirectional",
+		watch:          false,
+		timeout:        60,
+		conflict:       "ask",
+		preview:        false,
+		dryRun:         false,
 	}
 
 	cmd := &cobra.Command{
@@ -127,10 +127,10 @@ func runSync(ctx context.Context, dockerCli command.Cli, backendOptions *Backend
 
 	// Validate conflict resolution strategy
 	validStrategies := map[string]bool{
-		"ask":          true,
-		"local-wins":   true,
+		"ask":            true,
+		"local-wins":     true,
 		"container-wins": true,
-		"newer-wins":   true,
+		"newer-wins":     true,
 	}
 	if !validStrategies[opts.conflict] {
 		return fmt.Errorf("invalid conflict resolution strategy: %s", opts.conflict)

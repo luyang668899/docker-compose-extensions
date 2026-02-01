@@ -144,7 +144,7 @@ func showVersionHistory(projectName string) error {
 	fmt.Println("├─────────┼─────────────────────┼─────────────────────┼─────────────────────┤")
 
 	for _, version := range history {
-		fmt.Printf("│ %-7s │ %-19s │ %-19s │ %-19s │\n", 
+		fmt.Printf("│ %-7s │ %-19s │ %-19s │ %-19s │\n",
 			version.Version, version.CreatedAt, version.UpdatedAt, version.Description)
 	}
 
@@ -229,7 +229,7 @@ func runRollingRollback(ctx context.Context, backend api.Compose, project *types
 
 	for serviceName := range targetServices {
 		fmt.Printf("Rolling back service: %s to version %s\n", serviceName, version)
-		
+
 		// Stop the service
 		if err := backend.Stop(ctx, project.Name, api.StopOptions{
 			Services: []string{serviceName},
@@ -237,7 +237,7 @@ func runRollingRollback(ctx context.Context, backend api.Compose, project *types
 			fmt.Printf("Warning: Stop failed: %v\n", err)
 			// Continue even if stop fails
 		}
-		
+
 		// Start the service (in real implementation, this would use the specified version)
 		if err := backend.Start(ctx, project.Name, api.StartOptions{
 			Services: []string{serviceName},
@@ -245,14 +245,14 @@ func runRollingRollback(ctx context.Context, backend api.Compose, project *types
 			return err
 		}
 	}
-	
+
 	return nil
 }
 
 func runBlueGreenRollback(ctx context.Context, backend api.Compose, project *types.Project, projectName string, services []string, version string, preserveData bool) error {
 	// Blue-green rollback: create new instances alongside existing ones
 	fmt.Printf("Performing blue-green rollback to version %s\n", version)
-	
+
 	// Stop all services
 	if err := backend.Stop(ctx, projectName, api.StopOptions{
 		Services: services,
@@ -260,14 +260,14 @@ func runBlueGreenRollback(ctx context.Context, backend api.Compose, project *typ
 		fmt.Printf("Warning: Stop failed: %v\n", err)
 		// Continue even if stop fails
 	}
-	
+
 	// Start all services (in real implementation, this would use the specified version)
 	if err := backend.Start(ctx, projectName, api.StartOptions{
 		Services: services,
 	}); err != nil {
 		return err
 	}
-	
+
 	return nil
 }
 

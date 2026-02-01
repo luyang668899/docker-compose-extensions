@@ -72,7 +72,7 @@ func runQuick(ctx context.Context, dockerCli command.Cli, backendOptions *Backen
 		return err
 	}
 
-	project, name, err := opts.ToProject(ctx, dockerCli, backend, nil)
+	project, _, err := opts.ToProject(ctx, dockerCli, backend, nil)
 	if err != nil {
 		return err
 	}
@@ -118,11 +118,11 @@ func runQuick(ctx context.Context, dockerCli command.Cli, backendOptions *Backen
 		if len(service.Ports) > 0 {
 			fmt.Printf("%s:\n", service.Name)
 			for _, port := range service.Ports {
-				fmt.Printf("  %s:%s -> %s/%s\n", port.HostIP, port.Published, port.Target, port.Protocol)
+				fmt.Printf("  %s:%s -> %d/%s\n", port.HostIP, port.Published, port.Target, port.Protocol)
 			}
 		}
 	}
 
-	fmt.Printf("\nProject %s is ready!\n", name)
+	fmt.Printf("\nProject %s is ready!\n", project.Name)
 	return nil
 }

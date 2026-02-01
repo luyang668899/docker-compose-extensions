@@ -30,36 +30,36 @@ import (
 
 type perfOptions struct {
 	*ProjectOptions
-	services      []string
-	all           bool
-	cpu           bool
-	memory        bool
-	nets          bool
-	disk          bool
-	duration      int
-	interval      int
-	report        string
-	format        string
-	thresholds    bool
-	optimize      bool
-	quiet         bool
+	services   []string
+	all        bool
+	cpu        bool
+	memory     bool
+	nets       bool
+	disk       bool
+	duration   int
+	interval   int
+	report     string
+	format     string
+	thresholds bool
+	optimize   bool
+	quiet      bool
 }
 
 func perfCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
 	opts := perfOptions{
 		ProjectOptions: p,
-		all:           false,
-		cpu:           true,
-		memory:        true,
-		nets:          true,
-		disk:          true,
-		duration:      30,
-		interval:      1,
-		report:        "",
-		format:        "text",
-		thresholds:    false,
-		optimize:      false,
-		quiet:         false,
+		all:            false,
+		cpu:            true,
+		memory:         true,
+		nets:           true,
+		disk:           true,
+		duration:       30,
+		interval:       1,
+		report:         "",
+		format:         "text",
+		thresholds:     false,
+		optimize:       false,
+		quiet:          false,
 	}
 
 	cmd := &cobra.Command{

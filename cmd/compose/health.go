@@ -30,18 +30,18 @@ import (
 
 type healthOptions struct {
 	*ProjectOptions
-	check      bool
-	status     bool
-	watch      bool
-	configure  bool
-	autoheal   bool
-	service    string
-	interval   time.Duration
-	timeout    time.Duration
-	retries    int
+	check       bool
+	status      bool
+	watch       bool
+	configure   bool
+	autoheal    bool
+	service     string
+	interval    time.Duration
+	timeout     time.Duration
+	retries     int
 	startPeriod time.Duration
-	test       []string
-	disable    bool
+	test        []string
+	disable     bool
 }
 
 func healthCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
@@ -115,4 +115,3 @@ func runHealth(ctx context.Context, dockerCli command.Cli, backendOptions *Backe
 }
 
 // Health check functionality is integrated into the main runHealth function
-

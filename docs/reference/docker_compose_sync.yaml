@@ -1,0 +1,106 @@
+command: docker compose sync
+short: Sync code between local and containers
+long: |-
+    Synchronize code between local filesystem and containers with support for bidirectional sync and conflict resolution.
+
+    This command supports:
+    1. Bidirectional sync: Sync changes in both directions
+    2. One-way sync: Sync from local to container or container to local
+    3. Watch mode: Continuously sync changes as they occur
+    4. Ignore patterns: Exclude specific files and directories from sync
+    5. Conflict resolution: Handle file conflicts with various strategies
+    6. Preview: Show what would be synced without making changes
+    7. Dry run: Simulate sync operation
+usage: docker compose sync [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: all
+      value_type: bool
+      default_value: "false"
+      description: Sync all services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: conflict
+      value_type: string
+      default_value: ask
+      description: |
+        Conflict resolution strategy (ask, local-wins, container-wins, newer-wins)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: direction
+      value_type: string
+      default_value: bidirectional
+      description: |
+        Sync direction (bidirectional, local-to-container, container-to-local)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: ignore
+      value_type: stringArray
+      default_value: '[]'
+      description: Paths to ignore (supports patterns)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: preview
+      value_type: bool
+      default_value: "false"
+      description: Preview sync operations without making changes
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: timeout
+      value_type: int
+      default_value: "60"
+      description: Sync timeout in seconds
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: watch
+      value_type: bool
+      default_value: "false"
+      description: Watch for changes and sync continuously
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

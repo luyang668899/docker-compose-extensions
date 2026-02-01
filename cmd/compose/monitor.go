@@ -74,7 +74,7 @@ func runMonitor(ctx context.Context, dockerCli command.Cli, backendOptions *Back
 		return err
 	}
 
-	project, name, err := opts.ToProject(ctx, dockerCli, backend, nil)
+	project, _, err := opts.ToProject(ctx, dockerCli, backend, nil)
 	if err != nil {
 		return err
 	}
@@ -99,7 +99,7 @@ func runMonitor(ctx context.Context, dockerCli command.Cli, backendOptions *Back
 
 		// Show header
 		fmt.Fprintf(output, "=== Docker Compose Monitor ===\n")
-		fmt.Fprintf(output, "Project: %s\n", name)
+		fmt.Fprintf(output, "Project: %s\n", project.Name)
 		fmt.Fprintf(output, "Time: %s\n\n", time.Now().Format(time.RFC3339))
 
 		// Get services status
@@ -132,7 +132,7 @@ func runMonitor(ctx context.Context, dockerCli command.Cli, backendOptions *Back
 		} else if opts.format == "json" {
 			// JSON format
 			fmt.Fprintln(output, "{")
-			fmt.Fprintf(output, "  \"project\": \"%s\",\n", name)
+			fmt.Fprintf(output, "  \"project\": \"%s\",\n", project.Name)
 			fmt.Fprintf(output, "  \"time\": \"%s\",\n", time.Now().Format(time.RFC3339))
 			fmt.Fprintln(output, "  \"services\": [")
 

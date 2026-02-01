@@ -28,17 +28,17 @@ import (
 
 type networkOptions struct {
 	*ProjectOptions
-	list      bool
-	create    bool
-	remove    bool
-	inspect   bool
-	connect   bool
+	list       bool
+	create     bool
+	remove     bool
+	inspect    bool
+	connect    bool
 	disconnect bool
-	name      string
-	driver    string
+	name       string
+	driver     string
 	attachable bool
-	internal  bool
-	service   string
+	internal   bool
+	service    string
 	ipamDriver string
 	ipamConfig string
 }
@@ -111,4 +111,3 @@ func runNetwork(ctx context.Context, dockerCli command.Cli, backendOptions *Back
 }
 
 // Network management functions are integrated into the main runNetwork function
-

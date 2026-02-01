@@ -48,13 +48,13 @@ type devOptions struct {
 func devCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
 	opts := devOptions{
 		ProjectOptions: p,
-		hotReload:     true,
-		sync:          "",
-		debug:         false,
-		debugPort:     5678,
-		ide:           "",
-		pollInterval:  2,
-		restartPolicy: "always",
+		hotReload:      true,
+		sync:           "",
+		debug:          false,
+		debugPort:      5678,
+		ide:            "",
+		pollInterval:   2,
+		restartPolicy:  "always",
 	}
 
 	cmd := &cobra.Command{
@@ -101,23 +101,23 @@ func runDev(ctx context.Context, dockerCli command.Cli, backendOptions *BackendO
 
 	fmt.Println("Starting development environment...")
 	fmt.Printf("Hot reload: %v\n", opts.hotReload)
-	
+
 	if opts.sync != "" {
 		fmt.Printf("Code sync: %s\n", opts.sync)
 	}
-	
+
 	if opts.debug {
 		fmt.Printf("Debugging enabled on port: %d\n", opts.debugPort)
 	}
-	
+
 	if opts.ide != "" {
 		fmt.Printf("IDE integration: %s\n", opts.ide)
 	}
-	
+
 	if len(opts.watchPaths) > 0 {
 		fmt.Printf("Watching paths: %v\n", opts.watchPaths)
 	}
-	
+
 	if len(opts.ignorePaths) > 0 {
 		fmt.Printf("Ignoring paths: %v\n", opts.ignorePaths)
 	}
@@ -179,7 +179,7 @@ func runDev(ctx context.Context, dockerCli command.Cli, backendOptions *BackendO
 func setupHotReload(ctx context.Context, dockerCli command.Cli, backend api.Compose, project *types.Project, opts *devOptions) error {
 	// Simplified implementation - in real code, this would use file watchers
 	fmt.Println("Hot reload is enabled. Services will restart on code changes.")
-	
+
 	// For demo purposes, just return success
 	return nil
 }
@@ -190,10 +190,10 @@ func setupCodeSync(ctx context.Context, dockerCli command.Cli, project *types.Pr
 	if len(parts) != 2 {
 		return fmt.Errorf("invalid sync format: expected ./local:/container")
 	}
-	
+
 	localPath := parts[0]
 	containerPath := parts[1]
-	
+
 	// Validate local path
 	if !filepath.IsAbs(localPath) {
 		absPath, err := filepath.Abs(localPath)
@@ -202,14 +202,14 @@ func setupCodeSync(ctx context.Context, dockerCli command.Cli, project *types.Pr
 		}
 		localPath = absPath
 	}
-	
+
 	// Check if local path exists
 	if _, err := os.Stat(localPath); os.IsNotExist(err) {
 		return fmt.Errorf("local path does not exist: %s", localPath)
 	}
-	
+
 	fmt.Printf("Code sync enabled: %s -> %s\n", localPath, containerPath)
-	
+
 	// Simplified implementation - in real code, this would use a file sync mechanism
 	return nil
 }
@@ -217,14 +217,14 @@ func setupCodeSync(ctx context.Context, dockerCli command.Cli, project *types.Pr
 func setupDebugging(ctx context.Context, dockerCli command.Cli, project *types.Project, opts *devOptions) error {
 	fmt.Printf("Debugging enabled on port %d\n", opts.debugPort)
 	fmt.Println("You can now attach your debugger to this port.")
-	
+
 	// Simplified implementation - in real code, this would set up debugging in containers
 	return nil
 }
 
 func setupIDEIntegration(ctx context.Context, dockerCli command.Cli, project *types.Project, opts *devOptions) error {
 	ide := strings.ToLower(opts.ide)
-	
+
 	switch ide {
 	case "vscode":
 		fmt.Println("VS Code integration enabled.")
@@ -239,6 +239,6 @@ func setupIDEIntegration(ctx context.Context, dockerCli command.Cli, project *ty
 	default:
 		return fmt.Errorf("unsupported IDE: %s", opts.ide)
 	}
-	
+
 	return nil
 }

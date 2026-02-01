@@ -1,0 +1,153 @@
+command: docker compose perf
+short: Analyze performance and generate optimization suggestions
+long: |-
+    Analyze performance of services and generate detailed optimization suggestions.
+
+    This command supports:
+    1. Resource usage analysis: CPU, memory, network, and disk usage
+    2. Performance profiling: Collect performance data over time
+    3. Optimization suggestions: Generate actionable recommendations
+    4. Threshold analysis: Check if resources exceed defined thresholds
+    5. Reports: Generate performance reports in various formats
+    6. Quiet mode: Minimal output for scripting
+usage: docker compose perf [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: all
+      value_type: bool
+      default_value: "false"
+      description: Analyze all services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: cpu
+      value_type: bool
+      default_value: "true"
+      description: Analyze CPU usage
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: disk
+      value_type: bool
+      default_value: "true"
+      description: Analyze disk usage
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: duration
+      value_type: int
+      default_value: "30"
+      description: Analysis duration in seconds
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: format
+      value_type: string
+      default_value: text
+      description: Report format (text, json, html)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: interval
+      value_type: int
+      default_value: "1"
+      description: Sampling interval in seconds
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: memory
+      value_type: bool
+      default_value: "true"
+      description: Analyze memory usage
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: net
+      value_type: bool
+      default_value: "true"
+      description: Analyze network usage
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: optimize
+      value_type: bool
+      default_value: "false"
+      description: Generate optimization suggestions
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: quiet
+      value_type: bool
+      default_value: "false"
+      description: Quiet mode (minimal output)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: report
+      value_type: string
+      description: Output directory for performance reports
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: thresholds
+      value_type: bool
+      default_value: "false"
+      description: Check resource usage against thresholds
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

@@ -1,0 +1,102 @@
+command: docker compose deploy
+short: Deploy services to specified environment
+long: |-
+    Deploy services to specified environment with automated workflow.
+
+    This command supports:
+    1. Multi-environment deployment (dev/test/prod)
+    2. Automatic build and push images
+    3. Deployment strategies (rolling/blue-green)
+    4. CI/CD integration
+    5. Rollback to previous versions
+usage: docker compose deploy [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: ci
+      value_type: bool
+      default_value: "false"
+      description: CI mode for integration with CI/CD pipelines
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: env
+      value_type: string
+      default_value: dev
+      description: Environment to deploy to (dev/test/prod)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: no-build
+      value_type: bool
+      default_value: "false"
+      description: Skip build step
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: push
+      value_type: bool
+      default_value: "false"
+      description: Push images to registry
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: rollback
+      value_type: bool
+      default_value: "false"
+      description: Rollback to previous version
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: rollback-to
+      value_type: string
+      description: Rollback to specific version
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: strategy
+      value_type: string
+      default_value: rolling
+      description: Deployment strategy (rolling/blue-green)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

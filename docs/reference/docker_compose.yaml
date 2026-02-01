@@ -12,27 +12,41 @@ cname:
     - docker compose config
     - docker compose cp
     - docker compose create
+    - docker compose deploy
+    - docker compose dev
     - docker compose down
+    - docker compose env
     - docker compose events
     - docker compose exec
     - docker compose export
+    - docker compose health
     - docker compose images
+    - docker compose init
     - docker compose kill
     - docker compose logs
     - docker compose ls
+    - docker compose monitor
+    - docker compose network
     - docker compose pause
+    - docker compose perf
     - docker compose port
     - docker compose ps
     - docker compose publish
     - docker compose pull
     - docker compose push
+    - docker compose quick
     - docker compose restart
     - docker compose rm
+    - docker compose rollback
     - docker compose run
     - docker compose scale
+    - docker compose secret
+    - docker compose share
     - docker compose start
     - docker compose stats
     - docker compose stop
+    - docker compose sync
+    - docker compose test
     - docker compose top
     - docker compose unpause
     - docker compose up
@@ -48,27 +62,41 @@ clink:
     - docker_compose_config.yaml
     - docker_compose_cp.yaml
     - docker_compose_create.yaml
+    - docker_compose_deploy.yaml
+    - docker_compose_dev.yaml
     - docker_compose_down.yaml
+    - docker_compose_env.yaml
     - docker_compose_events.yaml
     - docker_compose_exec.yaml
     - docker_compose_export.yaml
+    - docker_compose_health.yaml
     - docker_compose_images.yaml
+    - docker_compose_init.yaml
     - docker_compose_kill.yaml
     - docker_compose_logs.yaml
     - docker_compose_ls.yaml
+    - docker_compose_monitor.yaml
+    - docker_compose_network.yaml
     - docker_compose_pause.yaml
+    - docker_compose_perf.yaml
     - docker_compose_port.yaml
     - docker_compose_ps.yaml
     - docker_compose_publish.yaml
     - docker_compose_pull.yaml
     - docker_compose_push.yaml
+    - docker_compose_quick.yaml
     - docker_compose_restart.yaml
     - docker_compose_rm.yaml
+    - docker_compose_rollback.yaml
     - docker_compose_run.yaml
     - docker_compose_scale.yaml
+    - docker_compose_secret.yaml
+    - docker_compose_share.yaml
     - docker_compose_start.yaml
     - docker_compose_stats.yaml
     - docker_compose_stop.yaml
+    - docker_compose_sync.yaml
+    - docker_compose_test.yaml
     - docker_compose_top.yaml
     - docker_compose_unpause.yaml
     - docker_compose_up.yaml

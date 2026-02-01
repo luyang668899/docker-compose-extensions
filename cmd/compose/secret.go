@@ -29,16 +29,16 @@ import (
 
 type secretOptions struct {
 	*ProjectOptions
-	name        string
-	value       string
-	file        string
-	rotate      bool
-	list        bool
-	remove      string
-	show        string
-	vault       bool
-	vaultAddr   string
-	vaultToken  string
+	name       string
+	value      string
+	file       string
+	rotate     bool
+	list       bool
+	remove     string
+	show       string
+	vault      bool
+	vaultAddr  string
+	vaultToken string
 }
 
 func secretCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
@@ -161,7 +161,7 @@ func runSecretList(ctx context.Context, dockerCli command.Cli, opts *secretOptio
 	fmt.Println("├───────────────┼─────────────────────┼────────────────┤")
 
 	for _, secret := range secrets {
-		fmt.Printf("│ %-13s │ %-19s │ %-14s │\n", 
+		fmt.Printf("│ %-13s │ %-19s │ %-14s │\n",
 			secret.Name, secret.CreatedAt, secret.Status)
 	}
 

@@ -178,6 +178,52 @@ options:
       experimentalcli: false
       kubernetes: false
       swarm: false
+    - option: template
+      value_type: string
+      description: Apply specified template
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: template-create
+      value_type: string
+      description: Create new template
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: template-list
+      value_type: bool
+      default_value: "false"
+      description: List available templates
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: template-remove
+      value_type: string
+      description: Remove template
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: template-vars
+      value_type: string
+      description: Variables for template (key=value format, comma-separated)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
     - option: variables
       value_type: bool
       default_value: "false"

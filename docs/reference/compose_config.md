@@ -27,6 +27,11 @@ the canonical format.
 | `-q`, `--quiet`           | `bool`   |         | Only validate the configuration, don't print anything                       |
 | `--resolve-image-digests` | `bool`   |         | Pin image tags to digests                                                   |
 | `--services`              | `bool`   |         | Print the service names, one per line.                                      |
+| `--template`              | `string` |         | Apply specified template                                                    |
+| `--template-create`       | `string` |         | Create new template                                                         |
+| `--template-list`         | `bool`   |         | List available templates                                                    |
+| `--template-remove`       | `string` |         | Remove template                                                             |
+| `--template-vars`         | `string` |         | Variables for template (key=value format, comma-separated)                  |
 | `--variables`             | `bool`   |         | Print model variables and default values.                                   |
 | `--volumes`               | `bool`   |         | Print the volume names, one per line.                                       |
 

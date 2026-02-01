@@ -1,0 +1,138 @@
+command: docker compose health
+short: Manage service health checks
+long: |-
+    EXPERIMENTAL - Manage service health checks for Compose projects.
+
+    This command helps you monitor, configure, and manage health checks for your services.
+usage: docker compose health [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: autoheal
+      value_type: bool
+      default_value: "false"
+      description: Enable auto-healing for unhealthy services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: check
+      value_type: bool
+      default_value: "false"
+      description: Run health check on service
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: configure
+      value_type: bool
+      default_value: "false"
+      description: Configure health check
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: disable
+      value_type: bool
+      default_value: "false"
+      description: Disable health check
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: interval
+      value_type: duration
+      default_value: 30s
+      description: Health check interval
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: retries
+      value_type: int
+      default_value: "3"
+      description: Health check retries
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: start-period
+      value_type: duration
+      default_value: 0s
+      description: Health check start period
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: status
+      value_type: bool
+      default_value: "false"
+      description: Show health status
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: test
+      value_type: stringArray
+      default_value: '[]'
+      description: Health check test command
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: timeout
+      value_type: duration
+      default_value: 30s
+      description: Health check timeout
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: watch
+      value_type: bool
+      default_value: "false"
+      description: Watch health status changes
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

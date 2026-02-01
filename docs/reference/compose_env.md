@@ -1,24 +1,21 @@
 # docker compose env
 
 <!---MARKER_GEN_START-->
-Manage environment configurations for Compose projects.
-
-This command helps you create and manage different environment configurations
-(development, testing, production) and easily switch between them.
+The `docker compose env` command helps you manage different environment configurations for your Compose projects. It allows you to create, activate, switch between, and manage environments such as development, testing, and production.
 
 ### Options
 
-| Name               | Type          | Default | Description                                                             |
-|:-------------------|:--------------|:--------|:------------------------------------------------------------------------|
-| `--activate`       | `bool`        |         | Activate environment                                                    |
-| `--create`         | `bool`        |         | Create new environment                                                  |
-| `--deactivate`     | `bool`        |         | Deactivate current environment                                          |
-| `--description`    | `string`      |         | Environment description                                                 |
-| `--dry-run`        | `bool`        |         | Execute command in dry run mode                                         |
-| `--export`         | `string`      |         | Export environment to file                                              |
-| `--import`         | `string`      |         | Import environment from file                                            |
-| `--list`           | `bool`        |         | List available environments                                             |
-| `--remove`         | `bool`        |         | Remove environment                                                      |
+| Name            | Type     | Default | Description                     |
+|:----------------|:---------|:--------|:--------------------------------|
+| `--activate`    | `bool`   |         | Activate environment            |
+| `--create`      | `bool`   |         | Create new environment          |
+| `--deactivate`  | `bool`   |         | Deactivate current environment  |
+| `--description` | `string` |         | Environment description         |
+| `--dry-run`     | `bool`   |         | Execute command in dry run mode |
+| `--export`      | `string` |         | Export environment to file      |
+| `--import`      | `string` |         | Import environment from file    |
+| `--list`        | `bool`   |         | List available environments     |
+| `--remove`      | `bool`   |         | Remove environment              |
 
 
 <!---MARKER_GEN_END-->

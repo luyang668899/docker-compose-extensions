@@ -1,0 +1,146 @@
+command: docker compose network
+short: Manage networks
+long: |-
+    EXPERIMENTAL - Manage networks for Compose projects.
+
+    This command helps you create, configure, and manage networks for your Compose projects.
+usage: docker compose network [OPTIONS] [NAME]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: attachable
+      value_type: bool
+      default_value: "false"
+      description: Make network attachable
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: connect
+      value_type: bool
+      default_value: "false"
+      description: Connect service to network
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: create
+      value_type: bool
+      default_value: "false"
+      description: Create network
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: disconnect
+      value_type: bool
+      default_value: "false"
+      description: Disconnect service from network
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: driver
+      value_type: string
+      default_value: bridge
+      description: Network driver
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: inspect
+      value_type: bool
+      default_value: "false"
+      description: Inspect network
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: internal
+      value_type: bool
+      default_value: "false"
+      description: Make network internal
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: ipam-config
+      value_type: string
+      description: IPAM configuration (e.g., "subnet=192.168.1.0/24")
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: ipam-driver
+      value_type: string
+      default_value: default
+      description: IPAM driver
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: list
+      value_type: bool
+      default_value: "false"
+      description: List networks
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: remove
+      value_type: bool
+      default_value: "false"
+      description: Remove network
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: service
+      value_type: string
+      description: Service name for connect/disconnect
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

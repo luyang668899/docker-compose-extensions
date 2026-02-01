@@ -32,31 +32,31 @@ import (
 
 type testOptions struct {
 	*ProjectOptions
-	services      []string
-	all           bool
-	watch         bool
-	report        string
-	format        string
-	timeout       int
-	parallel      int
-	env           []string
-	clean         bool
-	coverage      bool
-	coverageDir   string
+	services    []string
+	all         bool
+	watch       bool
+	report      string
+	format      string
+	timeout     int
+	parallel    int
+	env         []string
+	clean       bool
+	coverage    bool
+	coverageDir string
 }
 
 func testCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
 	opts := testOptions{
 		ProjectOptions: p,
-		all:           false,
-		watch:         false,
-		report:        "",
-		format:        "junit",
-		timeout:       60,
-		parallel:      1,
-		clean:         true,
-		coverage:      false,
-		coverageDir:   "./coverage",
+		all:            false,
+		watch:          false,
+		report:         "",
+		format:         "junit",
+		timeout:        60,
+		parallel:       1,
+		clean:          true,
+		coverage:       false,
+		coverageDir:    "./coverage",
 	}
 
 	cmd := &cobra.Command{
@@ -121,14 +121,14 @@ func runTest(ctx context.Context, dockerCli command.Cli, backendOptions *Backend
 
 	// Create report directory if needed
 	if opts.report != "" {
-		if err := os.MkdirAll(opts.report, 0755); err != nil {
+		if err := os.MkdirAll(opts.report, 0o755); err != nil {
 			return fmt.Errorf("failed to create report directory: %v", err)
 		}
 	}
 
 	// Create coverage directory if needed
 	if opts.coverage {
-		if err := os.MkdirAll(opts.coverageDir, 0755); err != nil {
+		if err := os.MkdirAll(opts.coverageDir, 0o755); err != nil {
 			return fmt.Errorf("failed to create coverage directory: %v", err)
 		}
 	}

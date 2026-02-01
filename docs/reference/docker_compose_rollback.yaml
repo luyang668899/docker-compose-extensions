@@ -1,0 +1,81 @@
+command: docker compose rollback
+short: Rollback services to previous versions
+long: |-
+    Rollback services to previous versions with configurable strategies.
+
+    This command supports:
+    1. Version history management
+    2. Rollback to specific version
+    3. Rollback to specific time point
+    4. Rollback strategies (rolling/blue-green)
+    5. Data preservation options
+usage: docker compose rollback [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: history
+      value_type: bool
+      default_value: "false"
+      description: Show version history
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: preserve-data
+      value_type: bool
+      default_value: "true"
+      description: Preserve service data during rollback
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: strategy
+      value_type: string
+      default_value: rolling
+      description: Rollback strategy (rolling/blue-green)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: timepoint
+      value_type: string
+      description: Rollback to specific time point (YYYY-MM-DD HH:MM:SS)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: version
+      value_type: string
+      description: Rollback to specific version
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

@@ -1,0 +1,115 @@
+command: docker compose share
+short: Share environment with team members
+long: |-
+    Share Docker Compose environment with team members for collaboration and review.
+
+    This command supports:
+    1. Environment sharing: Share the entire compose environment
+    2. Multiple sharing methods: Generate shareable links or export as archive
+    3. Include/exclude: Specify which files to include or exclude
+    4. Access control: Set permissions for shared environments
+    5. Expiration: Set expiration time for shared links
+    6. Public/private: Control visibility of shared environments
+    7. Custom messages: Add messages to shared environments
+    8. Quiet mode: Minimal output for scripting
+usage: docker compose share [OPTIONS]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: access
+      value_type: string
+      default_value: read
+      description: Access level (read, write, admin)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: exclude
+      value_type: stringArray
+      default_value: '[]'
+      description: Files to exclude (supports patterns)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: expires
+      value_type: string
+      default_value: 7d
+      description: Expiration time (e.g., 1h, 1d, 7d)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: include
+      value_type: stringArray
+      default_value: '[]'
+      description: Files to include (supports patterns)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: message
+      value_type: string
+      description: Custom message for shared environment
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: method
+      value_type: string
+      default_value: link
+      description: Sharing method (link, archive)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: public
+      value_type: bool
+      default_value: "false"
+      description: Make shared environment public
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: quiet
+      value_type: bool
+      default_value: "false"
+      description: Quiet mode (minimal output)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

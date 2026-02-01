@@ -1,0 +1,62 @@
+command: docker compose quick
+short: Quick setup and start services with minimal steps
+long: |-
+    EXPERIMENTAL - Quick setup and start services with minimal steps.
+
+    This command combines multiple operations into one:
+    1. Pull latest images (if needed)
+    2. Build services (if needed)
+    3. Start services in detached mode
+    4. Show status and endpoints
+usage: docker compose quick [OPTIONS] [SERVICE...]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: no-build
+      value_type: bool
+      default_value: "false"
+      description: Skip build step
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: no-detach
+      value_type: bool
+      default_value: "false"
+      description: Do not start in detached mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: no-pull
+      value_type: bool
+      default_value: "false"
+      description: Skip pull step
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

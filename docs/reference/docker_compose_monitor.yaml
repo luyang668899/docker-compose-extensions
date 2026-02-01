@@ -1,0 +1,71 @@
+command: docker compose monitor
+short: Monitor services status and resources
+long: |-
+    EXPERIMENTAL - Monitor services status and resources usage.
+
+    This command provides real-time monitoring of:
+    - Service status (running, stopped, etc.)
+    - Container health
+    - Resource usage (CPU, memory, network, disk)
+    - Port mappings and endpoints
+usage: docker compose monitor [OPTIONS]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: format
+      value_type: string
+      default_value: table
+      description: Output format (table, json)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: interval
+      value_type: duration
+      default_value: 5s
+      description: Refresh interval
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: output
+      value_type: string
+      description: Write output to file instead of stdout
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: watch
+      value_type: bool
+      default_value: "true"
+      description: Continuously monitor services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

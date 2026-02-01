@@ -1,0 +1,139 @@
+command: docker compose env
+short: Manage environment configurations
+long: |
+    The `docker compose env` command helps you manage different environment configurations for your Compose projects. It allows you to create, activate, switch between, and manage environments such as development, testing, and production.
+usage: docker compose env [OPTIONS]
+pname: docker compose
+plink: docker_compose.yaml
+options:
+    - option: activate
+      value_type: bool
+      default_value: "false"
+      description: Activate environment
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: create
+      value_type: bool
+      default_value: "false"
+      description: Create new environment
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: deactivate
+      value_type: bool
+      default_value: "false"
+      description: Deactivate current environment
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: description
+      value_type: string
+      description: Environment description
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: export
+      value_type: string
+      description: Export environment to file
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: import
+      value_type: string
+      description: Import environment from file
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: list
+      value_type: bool
+      default_value: "false"
+      description: List available environments
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: remove
+      value_type: bool
+      default_value: "false"
+      description: Remove environment
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: dry-run
+      value_type: bool
+      default_value: "false"
+      description: Execute command in dry run mode
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+examples: |-
+    ### Example 1: Basic environment management
+
+    ```bash
+    # Create environments
+    docker compose env --create --description "Development environment" dev
+    docker compose env --create --description "Testing environment" test
+    docker compose env --create --description "Production environment" prod
+
+    # List environments
+    docker compose env --list
+
+    # Activate development environment
+    docker compose env --activate dev
+
+    # Use the environment
+    docker compose up
+
+    # Switch to production environment
+    docker compose env --activate prod
+
+    # Use the production environment
+    docker compose up
+    ```
+
+    ### Example 2: Environment-specific configurations
+
+    You can create different environment configurations for different purposes:
+
+    ```bash
+    # Create a development environment with debug settings
+    docker compose env --create --description "Development with debug" dev-debug
+
+    # Create a production environment with optimized settings
+    docker compose env --create --description "Production optimized" prod-optimized
+    ```
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

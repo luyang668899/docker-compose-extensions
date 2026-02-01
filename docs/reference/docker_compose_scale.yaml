@@ -1,14 +1,91 @@
 command: docker compose scale
 short: Scale services
-long: Scale services
+long: |-
+    Scale services to specified replicas or enable auto-scaling based on resource usage.
+
+    This command supports:
+    1. Manual scaling (specify exact replica count)
+    2. Auto-scaling (based on CPU/memory usage)
+    3. Scaling strategies (balanced/performance/efficiency)
+    4. Scaling limits (minimum/maximum replicas)
 usage: docker compose scale [SERVICE=REPLICAS...]
 pname: docker compose
 plink: docker_compose.yaml
 options:
+    - option: auto
+      value_type: bool
+      default_value: "false"
+      description: Enable auto-scaling based on resource usage
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: cpu-threshold
+      value_type: float64
+      default_value: "70"
+      description: CPU usage threshold for auto-scaling (percentage)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: interval
+      value_type: int
+      default_value: "30"
+      description: Check interval for auto-scaling (seconds)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: max-replicas
+      value_type: int
+      default_value: "10"
+      description: Maximum number of replicas for auto-scaling
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: mem-threshold
+      value_type: float64
+      default_value: "70"
+      description: Memory usage threshold for auto-scaling (percentage)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: min-replicas
+      value_type: int
+      default_value: "1"
+      description: Minimum number of replicas for auto-scaling
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
     - option: no-deps
       value_type: bool
       default_value: "false"
       description: Don't start linked services
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: strategy
+      value_type: string
+      default_value: balanced
+      description: Scaling strategy (balanced/performance/efficiency)
       deprecated: false
       hidden: false
       experimental: false
