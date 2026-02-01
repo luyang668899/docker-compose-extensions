@@ -1,0 +1,234 @@
+/*
+   Copyright 2023 Docker Compose CLI authors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+package compose
+
+import (
+	"context"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+
+	"github.com/docker/cli/cli/command"
+	"github.com/spf13/cobra"
+)
+
+type initOptions struct {
+	*ProjectOptions
+	template  string
+	list      bool
+	name      string
+	services  []string
+	force     bool
+}
+
+// Template represents a project template
+ type Template struct {
+	Name        string
+	Description string
+	Services    []string
+	Example     string
+}
+
+// predefinedTemplates defines available project templates
+var predefinedTemplates = map[string]Template{
+	"web": {
+		Name:        "web",
+		Description: "Basic web application stack with frontend and backend",
+		Services:    []string{"frontend", "backend", "database"},
+		Example:     `services:\n  frontend:\n    image: nginx:alpine\n    ports:\n      - "80:80"\n    volumes:\n      - ./frontend:/usr/share/nginx/html\n  backend:\n    build: ./backend\n    ports:\n      - "8080:8080"\n  database:\n    image: postgres:alpine\n    environment:\n      POSTGRES_PASSWORD: example\n`,
+	},
+	"api": {
+		Name:        "api",
+		Description: "RESTful API service with database",
+		Services:    []string{"api", "database", "cache"},
+		Example:     `services:\n  api:\n    build: ./api\n    ports:\n      - "3000:3000"\n  database:\n    image: mysql:8.0\n    environment:\n      MYSQL_ROOT_PASSWORD: example\n  cache:\n    image: redis:alpine\n`,
+	},
+	"microservices": {
+		Name:        "microservices",
+		Description: "Microservices architecture with multiple services",
+		Services:    []string{"gateway", "service1", "service2", "database", "message-broker"},
+		Example:     `services:\n  gateway:\n    image: nginx:alpine\n    ports:\n      - "80:80"\n  service1:\n    build: ./service1\n  service2:\n    build: ./service2\n  database:\n    image: postgres:alpine\n  message-broker:\n    image: rabbitmq:alpine\n`,
+	},
+	"static": {
+		Name:        "static",
+		Description: "Static website with nginx",
+		Services:    []string{"web"},
+		Example:     `services:\n  web:\n    image: nginx:alpine\n    ports:\n      - "80:80"\n    volumes:\n      - ./static:/usr/share/nginx/html\n`,
+	},
+}
+
+func initCommand(p *ProjectOptions, dockerCli command.Cli, backendOptions *BackendOptions) *cobra.Command {
+	opts := initOptions{
+		ProjectOptions: p,
+	}
+
+	cmd := &cobra.Command{
+		Use:   "init [OPTIONS]",
+		Short: "Initialize a new Compose project from template",
+		Long: `EXPERIMENTAL - Initialize a new Compose project from template.
+
+This command helps you quickly create a new Compose project with pre-defined templates.
+You can list available templates or create a new project from a specific template.
+`,
+		RunE: Adapt(func(ctx context.Context, args []string) error {
+			return runInit(ctx, dockerCli, backendOptions, &opts)
+		}),
+	}
+
+	cmd.Flags().BoolVar(&opts.list, "list", false, "List available templates")
+	cmd.Flags().StringVar(&opts.template, "template", "", "Template name to use")
+	cmd.Flags().StringVar(&opts.name, "name", "", "Project name")
+	cmd.Flags().StringArrayVar(&opts.services, "services", []string{}, "Services to include (comma-separated)")
+	cmd.Flags().BoolVar(&opts.force, "force", false, "Overwrite existing files")
+	return cmd
+}
+
+func runInit(ctx context.Context, dockerCli command.Cli, backendOptions *BackendOptions, opts *initOptions) error {
+
+	// List available templates
+	if opts.list {
+		return listTemplates()
+	}
+
+	// Validate template
+	if opts.template == "" {
+		return fmt.Errorf("template is required. Use --list to see available templates")
+	}
+
+	template, exists := predefinedTemplates[opts.template]
+	if !exists {
+		return fmt.Errorf("template %q not found. Use --list to see available templates", opts.template)
+	}
+
+	// Determine project name
+	projectName := opts.name
+	if projectName == "" {
+		projectName = filepath.Base(opts.ProjectDir)
+		if projectName == "." {
+			pwd, _ := os.Getwd()
+			projectName = filepath.Base(pwd)
+		}
+		if projectName == "" {
+			projectName = "my-project"
+		}
+	}
+
+	// Create project directory if it doesn't exist
+	if err := os.MkdirAll(opts.ProjectDir, 0755); err != nil {
+		return err
+	}
+
+	// Create compose.yaml file
+	composeFile := filepath.Join(opts.ProjectDir, "compose.yaml")
+	if _, err := os.Stat(composeFile); err == nil && !opts.force {
+		return fmt.Errorf("compose.yaml already exists. Use --force to overwrite")
+	}
+
+	// Generate compose file content
+	content := fmt.Sprintf(`# %s project
+# Generated by docker compose init
+
+%s`, template.Description, template.Example)
+
+	// Write compose.yaml file
+	if err := os.WriteFile(composeFile, []byte(content), 0644); err != nil {
+		return err
+	}
+
+	// Create service directories
+	for _, service := range template.Services {
+		serviceDir := filepath.Join(opts.ProjectDir, service)
+		if err := os.MkdirAll(serviceDir, 0755); err != nil {
+			fmt.Printf("Warning: Failed to create directory %s: %v\n", serviceDir, err)
+			continue
+		}
+
+		// Create placeholder files for built services
+		if strings.Contains(template.Example, fmt.Sprintf("build: ./%s", service)) {
+			// Create Dockerfile
+			dockerfile := filepath.Join(serviceDir, "Dockerfile")
+			if err := os.WriteFile(dockerfile, []byte(`FROM alpine:latest
+
+# Add your service code here
+`), 0644); err != nil {
+				fmt.Printf("Warning: Failed to create Dockerfile for %s: %v\n", service, err)
+			}
+
+			// Create placeholder main file
+			mainFile := filepath.Join(serviceDir, "main.go")
+			if err := os.WriteFile(mainFile, []byte(`package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello from `+service+` service!")
+}
+`), 0644); err != nil {
+				fmt.Printf("Warning: Failed to create main.go for %s: %v\n", service, err)
+			}
+		}
+	}
+
+	// Create README file
+	readmeFile := filepath.Join(opts.ProjectDir, "README.md")
+	if _, err := os.Stat(readmeFile); err != nil || opts.force {
+		readmeContent := fmt.Sprintf(`# %s
+
+Generated by Docker Compose init using %s template.
+
+## Services
+
+`, projectName, template.Name)
+		for _, service := range template.Services {
+			readmeContent += fmt.Sprintf(`- %s
+`, service)
+		}
+		readmeContent += "\n## Getting Started\n\n1. Start the services:\n   ```bash\n   docker compose up -d\n   ```\n\n2. Check the status:\n   ```bash\n   docker compose ps\n   ```\n\n3. Stop the services:\n   ```bash\n   docker compose down\n   ```\n"
+		if err := os.WriteFile(readmeFile, []byte(readmeContent), 0644); err != nil {
+			fmt.Printf("Warning: Failed to create README.md: %v\n", err)
+		}
+	}
+
+	fmt.Printf("Project %s initialized successfully using %s template!\n", projectName, template.Name)
+	fmt.Printf("Created files:\n")
+	fmt.Printf("  - %s\n", composeFile)
+	for _, service := range template.Services {
+		fmt.Printf("  - %s/\n", filepath.Join(opts.ProjectDir, service))
+	}
+	fmt.Printf("  - %s\n", readmeFile)
+	fmt.Printf("\nNext steps:\n")
+	fmt.Printf("  1. Navigate to the project directory\n")
+	fmt.Printf("  2. Customize the compose.yaml file\n")
+	fmt.Printf("  3. Run 'docker compose up' to start the services\n")
+
+	return nil
+}
+
+func listTemplates() error {
+	fmt.Println("Available templates:")
+	fmt.Println("===================")
+	for name, template := range predefinedTemplates {
+		fmt.Printf("%s\n", name)
+		fmt.Printf("  Description: %s\n", template.Description)
+		fmt.Printf("  Services: %s\n", strings.Join(template.Services, ", "))
+		fmt.Println()
+	}
+	fmt.Println("Usage example:")
+	fmt.Println("  docker compose init --template web --name my-project")
+	return nil
+}

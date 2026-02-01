@@ -1,0 +1,1 @@
+{"name":"test-app","scripts":{"start":"echo \"App started\" && sleep infinity"}}

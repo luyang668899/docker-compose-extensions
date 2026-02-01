@@ -1,0 +1,14 @@
+{
+	"coverage": {
+		"lines": {
+			"total": 100,
+			"covered": 80,
+			"percentage": 80.0
+		},
+		"branches": {
+			"total": 50,
+			"covered": 35,
+			"percentage": 70.0
+		}
+	}
+}
